@@ -1,3 +1,3 @@
-import { dayOnePartOne } from './day-one.js'
+import { dayOnePartOne, dayOnePartTwo } from './day-one.js'
 
-export { dayOnePartOne }
+export { dayOnePartOne, dayOnePartTwo }
