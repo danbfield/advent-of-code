@@ -1,20 +1,18 @@
 import { parseInput } from './inputs/helper.js'
 
+const input = parseInput('2021/inputs/day-one.txt')
+
 const dayOnePartOne = () => {
-  const input = parseInput('2021/inputs/day-one.txt')
+  const INTERVAL = 1
 
-  let count = 0
+  const instances = (input, interval) =>
+    input.reduce((previousValue, currentValue, currentIndex) => {
+      return currentValue < input[currentIndex + interval]
+        ? previousValue + 1
+        : previousValue
+    }, 0)
 
-  for (let i = 0; i < input.length; i++) {
-    const currentInput = input[i]
-    const previousInput = input[i - 1]
-
-    if (currentInput > previousInput) count++
-  }
-
-  const answer = count
-
-  return answer
+  return instances(input, INTERVAL)
 }
 
 export { dayOnePartOne }
