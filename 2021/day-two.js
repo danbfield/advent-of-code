@@ -58,7 +58,33 @@ const calculatePositionPartTwo = () => {
   return horizontalPosition * depth
 }
 
+const calculatePosition = (commands) => {
+  let depth = 0
+  let position = 0
+
+  for (let i = 0; i < commands.length; i++) {
+    const [direction, value] = input[i].split(' ')
+    const units = parseInt(value)
+
+    switch (direction) {
+      case FORWARD:
+        position = position + units
+        break
+      case DOWN:
+        depth = depth + units
+        break
+      case UP:
+        depth = depth - units
+        break
+    }
+  }
+
+  return position * depth
+}
+
 const dayTwoPartOne = calculatePositionPartOne()
 const dayTwoPartTwo = calculatePositionPartTwo()
+
+console.log(calculatePosition(input))
 
 export { dayTwoPartOne, dayTwoPartTwo }
