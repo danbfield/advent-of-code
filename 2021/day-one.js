@@ -9,8 +9,8 @@ const instances = (input, interval) =>
       : previousValue
   }, 0)
 
-const dayOnePartOne = () => instances(input, 1)
+const dayOnePartOne = instances(input, 1)
 
-const dayOnePartTwo = () => instances(input, 3)
+const dayOnePartTwo = instances(input, 3)
 
 export { dayOnePartOne, dayOnePartTwo }

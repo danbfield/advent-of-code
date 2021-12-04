@@ -7,8 +7,8 @@ const port = 8080
 app.listen(port, () => {
   console.log('🎄 Advent of Code 🎄')
 
-  console.log(`D1 P1: ${dayOnePartOne()}`)
-  console.log(`D1 P2: ${dayOnePartTwo()}`)
+  console.log(`D1 P1: ${dayOnePartOne}`)
+  console.log(`D1 P2: ${dayOnePartTwo}`)
 })
 
 app.get('/', (req, res) => {
