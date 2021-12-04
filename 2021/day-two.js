@@ -6,7 +6,7 @@ const FORWARD = 'forward'
 const DOWN = 'down'
 const UP = 'up'
 
-const calculatePosition = () => {
+const calculatePositionPartOne = () => {
   let horizontalPosition = 0
   let depth = 0
 
@@ -31,6 +31,34 @@ const calculatePosition = () => {
   return horizontalPosition * depth
 }
 
-const dayTwoPartOne = calculatePosition()
+const calculatePositionPartTwo = () => {
+  let horizontalPosition = 0
+  let currentAim = 0
+  let depth = 0
 
-export { dayTwoPartOne }
+  for (let i = 0; i < input.length; i++) {
+    let [direction, units] = input[i].split(' ')
+
+    units = parseInt(units)
+
+    if (direction === FORWARD) {
+      horizontalPosition = horizontalPosition + units
+      depth = depth + units * currentAim
+    }
+
+    if (direction === DOWN) {
+      currentAim = currentAim + units
+    }
+
+    if (direction === UP) {
+      currentAim = currentAim - units
+    }
+  }
+
+  return horizontalPosition * depth
+}
+
+const dayTwoPartOne = calculatePositionPartOne()
+const dayTwoPartTwo = calculatePositionPartTwo()
+
+export { dayTwoPartOne, dayTwoPartTwo }
