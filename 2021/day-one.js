@@ -1,6 +1,6 @@
-import { parseInput } from './inputs/helper.js'
+import { parseInputAsNumbers } from './inputs/helper.js'
 
-const input = parseInput('2021/inputs/day-one.txt')
+const input = parseInputAsNumbers('2021/inputs/day-one.txt')
 
 const instances = (input, interval) =>
   input.reduce((previousValue, currentValue, currentIndex) => {
