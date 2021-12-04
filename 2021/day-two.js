@@ -6,59 +6,8 @@ const FORWARD = 'forward'
 const DOWN = 'down'
 const UP = 'up'
 
-const calculatePositionPartOne = () => {
-  let horizontalPosition = 0
-  let depth = 0
-
-  for (let i = 0; i < input.length; i++) {
-    let [direction, units] = input[i].split(' ')
-
-    units = parseInt(units)
-
-    if (direction === FORWARD) {
-      horizontalPosition = horizontalPosition + units
-    }
-
-    if (direction === DOWN) {
-      depth = depth + units
-    }
-
-    if (direction === UP) {
-      depth = depth - units
-    }
-  }
-
-  return horizontalPosition * depth
-}
-
-const calculatePositionPartTwo = () => {
-  let horizontalPosition = 0
-  let currentAim = 0
-  let depth = 0
-
-  for (let i = 0; i < input.length; i++) {
-    let [direction, units] = input[i].split(' ')
-
-    units = parseInt(units)
-
-    if (direction === FORWARD) {
-      horizontalPosition = horizontalPosition + units
-      depth = depth + units * currentAim
-    }
-
-    if (direction === DOWN) {
-      currentAim = currentAim + units
-    }
-
-    if (direction === UP) {
-      currentAim = currentAim - units
-    }
-  }
-
-  return horizontalPosition * depth
-}
-
-const calculatePosition = (commands) => {
+const calculatePosition = (commands, considerAim) => {
+  let aim = 0
   let depth = 0
   let position = 0
 
@@ -69,12 +18,15 @@ const calculatePosition = (commands) => {
     switch (direction) {
       case FORWARD:
         position = position + units
+        depth = considerAim ? depth + units * aim : depth
         break
       case DOWN:
-        depth = depth + units
+        depth = considerAim ? depth : depth + units
+        aim = considerAim ? (aim += units) : aim
         break
       case UP:
-        depth = depth - units
+        depth = considerAim ? depth : depth - units
+        aim = considerAim ? (aim -= units) : aim
         break
     }
   }
@@ -82,9 +34,7 @@ const calculatePosition = (commands) => {
   return position * depth
 }
 
-const dayTwoPartOne = calculatePositionPartOne()
-const dayTwoPartTwo = calculatePositionPartTwo()
-
-console.log(calculatePosition(input))
+const dayTwoPartOne = calculatePosition(input, false)
+const dayTwoPartTwo = calculatePosition(input, true)
 
 export { dayTwoPartOne, dayTwoPartTwo }
