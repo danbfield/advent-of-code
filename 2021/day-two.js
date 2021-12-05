@@ -37,6 +37,7 @@ const calculatePosition = (commands, considerAim = false) => {
 }
 
 const dayTwoPartOne = calculatePosition(input)
+
 const dayTwoPartTwo = calculatePosition(input, true)
 
 export { dayTwoPartOne, dayTwoPartTwo }
