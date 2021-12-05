@@ -7,6 +7,8 @@ const numberOfCharacters = 12
 const MAX_RANGE = 'max'
 const MIN_RANGE = 'min'
 
+const AS_DECIMAL = 2
+
 const getBitInPosition = (diagnostics, position, range) => {
   let bit0 = 0
   let bit1 = 0
@@ -47,11 +49,11 @@ const getUnitRate = (diagnostics, range) => {
 
   // Convert ["0", "0", "1", "1", "1"] into a string and parseInt;
   // changing it into a decimal number
-  return parseInt(values.join(''), 2)
+  return parseInt(values.join(''), AS_DECIMAL)
 }
 
 const recursiveFilter = (input, range, position = 0) => {
-  if (input.length === 1) return parseInt(input.join(''), 2)
+  if (input.length === 1) return parseInt(input.join(''), AS_DECIMAL)
 
   const value = getBitInPosition(input, position, range)
 
