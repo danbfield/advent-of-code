@@ -9,12 +9,12 @@ const MIN_RANGE = 'min'
 
 const AS_DECIMAL = 2
 
-const getBitInPosition = (diagnostics, position, range) => {
+const getBitInPosition = (array, position, range) => {
   let bit0 = 0
   let bit1 = 0
 
-  for (let i = 0; i < diagnostics.length; i++) {
-    const character = diagnostics[i].charAt(position)
+  for (let i = 0; i < array.length; i++) {
+    const character = array[i].charAt(position)
     if (character === '0') bit0++
     if (character === '1') bit1++
   }
@@ -29,13 +29,13 @@ const getBitInPosition = (diagnostics, position, range) => {
   if (range === MIN_RANGE) return bit0 < bit1 ? '0' : '1'
 }
 
-const getUnitRate = (diagnostics, range) => {
+const getUnitRate = (array, range) => {
   let values = []
 
   // Loops over each position, and gets the most/least common bit
   // and adds it to an array of values
   for (let position = 0; position < NUMBER_OF_CHARACTERS; position++) {
-    const value = getBitInPosition(diagnostics, position, range)
+    const value = getBitInPosition(array, position, range)
 
     values.push(value)
   }
@@ -45,12 +45,12 @@ const getUnitRate = (diagnostics, range) => {
   return parseInt(values.join(''), AS_DECIMAL)
 }
 
-const recursiveFilter = (input, range, position = 0) => {
-  if (input.length === 1) return parseInt(input.join(''), AS_DECIMAL)
+const recursiveFilter = (array, range, position = 0) => {
+  if (array.length === 1) return parseInt(array.join(''), AS_DECIMAL)
 
-  const value = getBitInPosition(input, position, range)
+  const value = getBitInPosition(array, position, range)
 
-  const filtered = input.filter((element) =>
+  const filtered = array.filter((element) =>
     element.charAt(position).startsWith(value)
   )
 
