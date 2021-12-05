@@ -30,29 +30,24 @@ const getLeastCommonBitInPosition = (diagnostics, position) => {
   return bit0 < bit1 ? '0' : '1'
 }
 
-const calculateGammaRate = (diagnostics) => {
+const getUnitRate = (diagnostics, range) => {
   let values = []
 
   for (let position = 0; position < numberOfCharacters; position++) {
-    values.push(getMostCommonBitInPosition(diagnostics, position))
+    const value =
+      range === 'max'
+        ? getLeastCommonBitInPosition(diagnostics, position)
+        : getMostCommonBitInPosition(diagnostics, position)
+
+    values.push(value)
   }
 
   // Converts binary to decimal
   return parseInt(values.join(''), 2)
 }
 
-const calculateEpsilonRate = (diagnostics) => {
-  let values = []
-
-  for (let position = 0; position < numberOfCharacters; position++) {
-    values.push(getLeastCommonBitInPosition(diagnostics, position))
-  }
-
-  return parseInt(values.join(''), 2)
-}
-
-const gammaRate = calculateGammaRate(input)
-const epsilonRate = calculateEpsilonRate(input)
+const gammaRate = getUnitRate(input, 'max')
+const epsilonRate = getUnitRate(input, 'min')
 
 const dayThreePartOne = gammaRate * epsilonRate
 const dayThreePartTwo = '🚧 WIP 🚧'
