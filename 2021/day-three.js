@@ -1,8 +1,8 @@
 import { parseInputAsStrings } from './inputs/helper.js'
 
-const input = parseInputAsStrings('2021/inputs/test.txt')
+const input = parseInputAsStrings('2021/inputs/day-three.txt')
 
-const numberOfCharacters = 5
+const numberOfCharacters = 12
 
 const MAX_RANGE = 'max'
 const MIN_RANGE = 'min'
@@ -70,11 +70,8 @@ const epsilonRate = getUnitRate(input, MIN_RANGE)
 const oxygenRating = recursiveFilter(input, MAX_RANGE)
 const scrubberRating = recursiveFilter(input, MIN_RANGE)
 
-console.log(oxygenRating)
-console.log(scrubberRating)
-
 const dayThreePartOne = gammaRate * epsilonRate
 
-const dayThreePartTwo = '🚧 WIP 🚧'
+const dayThreePartTwo = oxygenRating * scrubberRating
 
 export { dayThreePartOne, dayThreePartTwo }
