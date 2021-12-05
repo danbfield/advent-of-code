@@ -2,11 +2,13 @@ import { parseInputAsStrings } from './inputs/helper.js'
 
 const input = parseInputAsStrings('2021/inputs/day-two.txt')
 
-const FORWARD = 'forward'
-const DOWN = 'down'
-const UP = 'up'
-
 const calculatePosition = (commands, considerAim = false) => {
+  const DIRECTIONS = {
+    FORWARD: 'forward',
+    DOWN: 'down',
+    UP: 'up',
+  }
+
   let aim = 0
   let depth = 0
   let position = 0
@@ -16,15 +18,15 @@ const calculatePosition = (commands, considerAim = false) => {
     const units = parseInt(value)
 
     switch (direction) {
-      case FORWARD:
+      case DIRECTIONS.FORWARD:
         position = position + units
         depth = considerAim ? depth + units * aim : depth
         break
-      case DOWN:
+      case DIRECTIONS.DOWN:
         depth = considerAim ? depth : depth + units
         aim = considerAim ? (aim += units) : aim
         break
-      case UP:
+      case DIRECTIONS.UP:
         depth = considerAim ? depth : depth - units
         aim = considerAim ? (aim -= units) : aim
         break
