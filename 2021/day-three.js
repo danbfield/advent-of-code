@@ -12,7 +12,7 @@ const AS_DECIMAL = 2
 /**
  * Imagine a matrix of numbers such as below. This function
  * loops over each row, and gets either the most or least
- * popular "bit" for that column.
+ * popular "bit" for that column (or position).
  *
  * For example, if we provide a position of 1 and range
  * of MIN_RANGE (which is the least common), this function
