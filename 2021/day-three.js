@@ -73,13 +73,36 @@ const getUnitRate = (array, range) => {
   return parseInt(values.join(''), AS_DECIMAL)
 }
 
+/**
+ * Imagine a matrix of numbers such as below.
+ *
+ * 11110
+ * 10110
+ * 10111
+ *
+ * This function loops over each row, and using the position arg,
+ * gets the most or least popular bit for the column, then filter
+ * the array of binary numbers by the returned bit. This returns
+ * another array, except it'll be smaller. Each time we call the
+ * function adjust the position (the column) by one.
+ *
+ * Just. Keep. Filtering.
+ *
+ * Eventually you'll have one row left, and at that point the
+ * function returns a decimal conversion for that binary number.
+ *
+ * @param string[] array
+ * @param string range
+ * @param number position
+ * @returns function || number
+ */
 const recursiveFilter = (array, range, position = 0) => {
   if (array.length === 1) return parseInt(array.join(''), AS_DECIMAL)
 
+  const bit = getBitInPosition(array, range, position)
+
   const filtered = array.filter((element) =>
-    element
-      .charAt(position)
-      .startsWith(getBitInPosition(array, range, position))
+    element.charAt(position).startsWith(bit)
   )
 
   return recursiveFilter(filtered, range, position + 1)
