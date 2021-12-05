@@ -3,6 +3,8 @@ import { parseInputAsStrings } from './inputs/helper.js'
 const input = parseInputAsStrings('2021/inputs/day-three.txt')
 
 const numberOfCharacters = 12
+const MAX_RANGE = 'max'
+const MIN_RANGE = 'min'
 
 const getBitInPosition = (diagnostics, position, range) => {
   let bit0 = 0
@@ -14,7 +16,13 @@ const getBitInPosition = (diagnostics, position, range) => {
     if (character === '1') bit1++
   }
 
-  return range === 'max' ? (bit0 > bit1 ? '0' : '1') : bit0 < bit1 ? '0' : '1'
+  return range === MAX_RANGE
+    ? bit0 > bit1
+      ? '0'
+      : '1'
+    : bit0 < bit1
+    ? '0'
+    : '1'
 }
 
 const getUnitRate = (diagnostics, range) => {
@@ -30,8 +38,8 @@ const getUnitRate = (diagnostics, range) => {
   return parseInt(values.join(''), 2)
 }
 
-const gammaRate = getUnitRate(input, 'max')
-const epsilonRate = getUnitRate(input, 'min')
+const gammaRate = getUnitRate(input, MAX_RANGE)
+const epsilonRate = getUnitRate(input, MIN_RANGE)
 
 const dayThreePartOne = gammaRate * epsilonRate
 
