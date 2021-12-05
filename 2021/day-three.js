@@ -48,15 +48,13 @@ const getUnitRate = (array, range) => {
 const recursiveFilter = (array, range, position = 0) => {
   if (array.length === 1) return parseInt(array.join(''), AS_DECIMAL)
 
-  const value = getBitInPosition(array, position, range)
-
   const filtered = array.filter((element) =>
-    element.charAt(position).startsWith(value)
+    element
+      .charAt(position)
+      .startsWith(getBitInPosition(array, position, range))
   )
 
-  const newPosition = position + 1
-
-  return recursiveFilter(filtered, range, newPosition)
+  return recursiveFilter(filtered, range, position + 1)
 }
 
 const gammaRate = getUnitRate(input, MAX_RANGE)
