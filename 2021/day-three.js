@@ -3,6 +3,7 @@ import { parseInputAsStrings } from './inputs/helper.js'
 const input = parseInputAsStrings('2021/inputs/day-three.txt')
 
 const numberOfCharacters = 12
+
 const MAX_RANGE = 'max'
 const MIN_RANGE = 'min'
 
@@ -28,13 +29,16 @@ const getBitInPosition = (diagnostics, position, range) => {
 const getUnitRate = (diagnostics, range) => {
   let values = []
 
+  // Loops over each position, and gets the most/least common bit
+  // and adds it to an array of values
   for (let position = 0; position < numberOfCharacters; position++) {
     const value = getBitInPosition(diagnostics, position, range)
 
     values.push(value)
   }
 
-  // Converts binary to decimal
+  // Convert ["0", "0", "1", "1", "1"] into a string and parseInt;
+  // changing it into a decimal number
   return parseInt(values.join(''), 2)
 }
 
