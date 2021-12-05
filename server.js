@@ -4,6 +4,8 @@ import {
   dayOnePartTwo,
   dayTwoPartOne,
   dayTwoPartTwo,
+  dayThreePartOne,
+  dayThreePartTwo,
 } from './2021/index.js'
 
 const app = express()
@@ -16,6 +18,8 @@ app.listen(port, () => {
   console.log(`D1 P2: ${dayOnePartTwo}`)
   console.log(`D2 P1: ${dayTwoPartOne}`)
   console.log(`D2 P2: ${dayTwoPartTwo}`)
+  console.log(`D3 P1: ${dayThreePartOne}`)
+  console.log(`D3 P2: ${dayThreePartTwo}`)
 })
 
 app.get('/', (req, res) => {
