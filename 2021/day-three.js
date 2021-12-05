@@ -47,6 +47,16 @@ const getBitInPosition = (array, range, position) => {
   if (range === MIN_RANGE) return bit0 < bit1 ? '0' : '1'
 }
 
+/**
+ * Loops over each character position with the help of NUMBER_OF_CHARACTERS
+ * and fetches the "bit" most or least common for that position. For each
+ * of these characters, build an array of values which are used to build
+ * the decimal value which is eventually returned.
+ *
+ * @param string[] array
+ * @param string range
+ * @returns number
+ */
 const getUnitRate = (array, range) => {
   let values = []
 
