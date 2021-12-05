@@ -6,7 +6,7 @@ const FORWARD = 'forward'
 const DOWN = 'down'
 const UP = 'up'
 
-const calculatePosition = (commands, considerAim) => {
+const calculatePosition = (commands, considerAim = false) => {
   let aim = 0
   let depth = 0
   let position = 0
@@ -34,7 +34,7 @@ const calculatePosition = (commands, considerAim) => {
   return position * depth
 }
 
-const dayTwoPartOne = calculatePosition(input, false)
+const dayTwoPartOne = calculatePosition(input)
 const dayTwoPartTwo = calculatePosition(input, true)
 
 export { dayTwoPartOne, dayTwoPartTwo }
