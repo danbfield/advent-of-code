@@ -9,7 +9,25 @@ const MIN_RANGE = 'min'
 
 const AS_DECIMAL = 2
 
-const getBitInPosition = (array, position, range) => {
+/**
+ * Imagine a matrix of numbers such as below. This function
+ * loops over each row, and gets either the most or least
+ * popular "bit" for that column.
+ *
+ * For example, if we provide a position of 1 and range
+ * of MIN_RANGE (which is the least common), this function
+ * would return "1".
+ *
+ * 11110
+ * 10110
+ * 10111
+ *
+ * @param string[] array
+ * @param string range
+ * @param number position
+ * @returns string '0' || '1'
+ */
+const getBitInPosition = (array, range, position) => {
   let bit0 = 0
   let bit1 = 0
 
@@ -35,7 +53,7 @@ const getUnitRate = (array, range) => {
   // Loops over each position, and gets the most/least common bit
   // and adds it to an array of values
   for (let position = 0; position < NUMBER_OF_CHARACTERS; position++) {
-    const value = getBitInPosition(array, position, range)
+    const value = getBitInPosition(array, range, position)
 
     values.push(value)
   }
@@ -51,7 +69,7 @@ const recursiveFilter = (array, range, position = 0) => {
   const filtered = array.filter((element) =>
     element
       .charAt(position)
-      .startsWith(getBitInPosition(array, position, range))
+      .startsWith(getBitInPosition(array, range, position))
   )
 
   return recursiveFilter(filtered, range, position + 1)
