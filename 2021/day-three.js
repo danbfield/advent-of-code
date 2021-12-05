@@ -17,6 +17,14 @@ const getBitInPosition = (diagnostics, position, range) => {
     if (character === '1') bit1++
   }
 
+  if (range === MAX_RANGE && bit0 === bit1) {
+    return '1'
+  }
+
+  if (range === MIN_RANGE && bit0 === bit1) {
+    return '0'
+  }
+
   return range === MAX_RANGE
     ? bit0 > bit1
       ? '0'
@@ -60,8 +68,10 @@ const gammaRate = getUnitRate(input, MAX_RANGE)
 const epsilonRate = getUnitRate(input, MIN_RANGE)
 
 const oxygenRating = recursiveFilter(input, MAX_RANGE)
+const scrubberRating = recursiveFilter(input, MIN_RANGE)
 
 console.log(oxygenRating)
+console.log(scrubberRating)
 
 const dayThreePartOne = gammaRate * epsilonRate
 
