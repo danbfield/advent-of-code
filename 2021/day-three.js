@@ -108,14 +108,18 @@ const recursiveFilter = (array, range, position = 0) => {
   return recursiveFilter(filtered, range, position + 1)
 }
 
-const gammaRate = getUnitRate(input, MAX_RANGE)
-const epsilonRate = getUnitRate(input, MIN_RANGE)
+const powerConsumption = {
+  gamma: getUnitRate(input, MAX_RANGE),
+  epsilon: getUnitRate(input, MIN_RANGE),
+}
 
-const oxygenRating = recursiveFilter(input, MAX_RANGE)
-const scrubberRating = recursiveFilter(input, MIN_RANGE)
+const lifeSupportRating = {
+  oxygen: recursiveFilter(input, MAX_RANGE),
+  scrubber: recursiveFilter(input, MIN_RANGE),
+}
 
-const dayThreePartOne = gammaRate * epsilonRate
+const dayThreePartOne = powerConsumption.gamma * powerConsumption.epsilon
 
-const dayThreePartTwo = oxygenRating * scrubberRating
+const dayThreePartTwo = lifeSupportRating.oxygen * lifeSupportRating.scrubber
 
 export { dayThreePartOne, dayThreePartTwo }
