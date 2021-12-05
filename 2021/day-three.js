@@ -2,7 +2,7 @@ import { parseInputAsStrings } from './inputs/helper.js'
 
 const input = parseInputAsStrings('2021/inputs/day-three.txt')
 
-const numberOfCharacters = 12
+const NUMBER_OF_CHARACTERS = 12
 
 const MAX_RANGE = 'max'
 const MIN_RANGE = 'min'
@@ -34,7 +34,7 @@ const getUnitRate = (diagnostics, range) => {
 
   // Loops over each position, and gets the most/least common bit
   // and adds it to an array of values
-  for (let position = 0; position < numberOfCharacters; position++) {
+  for (let position = 0; position < NUMBER_OF_CHARACTERS; position++) {
     const value = getBitInPosition(diagnostics, position, range)
 
     values.push(value)
