@@ -1,8 +1,8 @@
 import { parseInputAsStrings } from './inputs/helper.js'
 
-const input = parseInputAsStrings('2021/inputs/day-three.txt')
+const input = parseInputAsStrings('2021/inputs/test.txt')
 
-const numberOfCharacters = 12
+const numberOfCharacters = 5
 
 const MAX_RANGE = 'max'
 const MIN_RANGE = 'min'
@@ -42,8 +42,26 @@ const getUnitRate = (diagnostics, range) => {
   return parseInt(values.join(''), 2)
 }
 
+const recursiveFilter = (input, range, position = 0) => {
+  if (input.length === 1) return parseInt(input.join(''), 2)
+
+  const value = getBitInPosition(input, position, range)
+
+  const filtered = input.filter((element) =>
+    element.charAt(position).startsWith(value)
+  )
+
+  const newPosition = position + 1
+
+  return recursiveFilter(filtered, range, newPosition)
+}
+
 const gammaRate = getUnitRate(input, MAX_RANGE)
 const epsilonRate = getUnitRate(input, MIN_RANGE)
+
+const oxygenRating = recursiveFilter(input, MAX_RANGE)
+
+console.log(oxygenRating)
 
 const dayThreePartOne = gammaRate * epsilonRate
 
