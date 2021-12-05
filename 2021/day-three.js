@@ -19,21 +19,14 @@ const getBitInPosition = (diagnostics, position, range) => {
     if (character === '1') bit1++
   }
 
-  if (range === MAX_RANGE && bit0 === bit1) {
-    return '1'
-  }
-
-  if (range === MIN_RANGE && bit0 === bit1) {
-    return '0'
-  }
-
-  return range === MAX_RANGE
-    ? bit0 > bit1
-      ? '0'
-      : '1'
-    : bit0 < bit1
-    ? '0'
-    : '1'
+  // Conditions needed to determine which value is returned;
+  // min and max are used to determine which are the least
+  // and most common bit values, in the case in which these
+  // values are even, we should return the favoured value.
+  if (range === MAX_RANGE && bit0 === bit1) return '1'
+  if (range === MIN_RANGE && bit0 === bit1) return '0'
+  if (range === MAX_RANGE) return bit0 > bit1 ? '0' : '1'
+  if (range === MIN_RANGE) return bit0 < bit1 ? '0' : '1'
 }
 
 const getUnitRate = (diagnostics, range) => {
