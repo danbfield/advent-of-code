@@ -50,19 +50,54 @@ const formatInput = (input) => {
       const formattedString = currentLine.replace(/ +/g, ' ')
       // currentBoard.push(formattedString.split(' '))
       // Should I split the string into an array of 5 values? Hmm...
-      currentBoard.push(formattedString)
+      currentBoard.push(formattedString.split(' '))
     }
   }
 
   return [arrayOfDrawnNumbers, boards]
 }
 
-const [drawnNumbers, boards] = formatInput(input)
+const [numbers, boards] = formatInput(input)
 
-console.log({ drawnNumbers, boards })
+const getWinningResult = (board, calledNumbers) => {
+  const flatBoard = board.flat()
+  const lastNumber = parseInt(calledNumbers[calledNumbers.length - 1])
 
-const solve = () => {
-  // ...
+  const excludedNumbers = flatBoard
+    .filter((boardNumbers) => !calledNumbers.includes(boardNumbers))
+    .map((item) => parseInt(item))
+
+  const summedExcludedNumbers = excludedNumbers.reduce((a, b) => a + b, 0)
+
+  return summedExcludedNumbers * lastNumber
+}
+
+const playBingo = (bingoNumbers, bingoBoards) => {
+  const calledNumbers = []
+
+  for (let i = 0; i < bingoNumbers.length; i++) {
+    const calledNumber = bingoNumbers[i]
+
+    calledNumbers.push(calledNumber)
+
+    for (let j = 0; j < bingoBoards.length; j++) {
+      const board = bingoBoards[j]
+
+      let hasWon = false
+
+      for (let x = 0; x < board.length; x++) {
+        const row = board[x]
+        hasWon = row.every((number) => calledNumbers.includes(number))
+
+        if (hasWon) {
+          return getWinningResult(board, calledNumbers)
+        }
+      }
+
+      // getWinningResult for column not just row
+    }
+  }
+
   return 'something'
 }
 
@@ -74,8 +109,8 @@ const calcuteFinalScore = () => {
   return 'something'
 }
 
-const dayFourPartOne = solve()
+const dayFourPartOne = playBingo(numbers, boards)
 
-const dayFourPartTwo = solve()
+const dayFourPartTwo = ''
 
 export { dayFourPartOne, dayFourPartTwo }
