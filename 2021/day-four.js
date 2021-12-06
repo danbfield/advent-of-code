@@ -72,33 +72,48 @@ const getWinningResult = (board, calledNumbers) => {
   return summedExcludedNumbers * lastNumber
 }
 
-const playBingo = (bingoNumbers, bingoBoards) => {
-  const numbers = []
+const getWinningBoard = (numbers, bingoBoards) => {
+  for (let j = 0; j < bingoBoards.length; j++) {
+    const board = bingoBoards[j]
 
-  for (let i = 0; i < bingoNumbers.length; i++) {
-    numbers.push(bingoNumbers[i])
+    for (let x = 0; x < board.length; x++) {
+      // We need this to get the columns, not the rows due to how we've
+      // built our data structure, because our bingo board grid is 5x5.
+      const nums = [0, 1, 2, 3, 4]
 
-    for (let j = 0; j < bingoBoards.length; j++) {
-      const board = bingoBoards[j]
+      const rowsMatch = nums.every((num) => numbers.includes(board[x][num]))
+      const colsMatch = nums.every((num) => numbers.includes(board[num][x]))
 
-      for (let x = 0; x < board.length; x++) {
-        // We need this to get the columns, not the rows due to how we've
-        // built our data structure, because our bingo board grid is 5x5.
-        const nums = [0, 1, 2, 3, 4]
-
-        const rowsMatch = nums.every((num) => numbers.includes(board[x][num]))
-        const colsMatch = nums.every((num) => numbers.includes(board[num][x]))
-
-        if (rowsMatch || colsMatch) {
-          return getWinningResult(board, numbers)
-        }
+      if (rowsMatch || colsMatch) {
+        return board
       }
     }
   }
 }
 
-const dayFourPartOne = playBingo(numbers, boards)
+const playBingo = (bingoNumbers, bingoBoards) => {
+  const numbers = []
+  const winners = []
 
-const dayFourPartTwo = ''
+  for (let i = 0; i < bingoNumbers.length; i++) {
+    numbers.push(bingoNumbers[i])
+
+    const winningBoard = getWinningBoard(numbers, bingoBoards)
+
+    if (winningBoard) {
+      winners.push(getWinningResult(winningBoard, numbers))
+
+      // Remove the winning board from array of potential boards
+      bingoBoards = bingoBoards.filter((board) => board !== winningBoard)
+    }
+  }
+
+  // Example input matches correctly, the puzzle input does not
+  return [winners[0], winners[winners.length - 1]]
+}
+
+const dayFourPartOne = playBingo(numbers, boards)[0]
+
+const dayFourPartTwo = playBingo(numbers, boards)[1]
 
 export { dayFourPartOne, dayFourPartTwo }
