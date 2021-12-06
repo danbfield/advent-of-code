@@ -1,6 +1,6 @@
 import { parseInputByCarriageReturn } from './inputs/helper.js'
 
-const input = parseInputByCarriageReturn('2021/inputs/test.txt')
+const input = parseInputByCarriageReturn('2021/inputs/day-four.txt')
 
 /**
  * Formats the input of parseInputByCarriageReturn which does two things.
@@ -72,21 +72,17 @@ const getWinningResult = (board, calledNumbers) => {
   return summedExcludedNumbers * lastNumber
 }
 
-const getWinningBoard = (numbers, bingoBoards) => {
-  for (let j = 0; j < bingoBoards.length; j++) {
-    const board = bingoBoards[j]
+const getWinningBoard = (numbers, board) => {
+  for (let x = 0; x < board.length; x++) {
+    // We need this to get the columns, not the rows due to how we've
+    // built our data structure, because our bingo board grid is 5x5.
+    const nums = [0, 1, 2, 3, 4]
 
-    for (let x = 0; x < board.length; x++) {
-      // We need this to get the columns, not the rows due to how we've
-      // built our data structure, because our bingo board grid is 5x5.
-      const nums = [0, 1, 2, 3, 4]
+    const rowsMatch = nums.every((num) => numbers.includes(board[x][num]))
+    const colsMatch = nums.every((num) => numbers.includes(board[num][x]))
 
-      const rowsMatch = nums.every((num) => numbers.includes(board[x][num]))
-      const colsMatch = nums.every((num) => numbers.includes(board[num][x]))
-
-      if (rowsMatch || colsMatch) {
-        return board
-      }
+    if (rowsMatch || colsMatch) {
+      return board
     }
   }
 }
@@ -95,21 +91,34 @@ const playBingo = (bingoNumbers, bingoBoards) => {
   const numbers = []
   const winners = []
 
+  let partAResult = 0
+  let partBResult = 0
+
   for (let i = 0; i < bingoNumbers.length; i++) {
     numbers.push(bingoNumbers[i])
 
-    const winningBoard = getWinningBoard(numbers, bingoBoards)
+    for (let j = 0; j < bingoBoards.length; j++) {
+      const board = bingoBoards[j]
+      const winningBoard = getWinningBoard(numbers, board)
 
-    if (winningBoard) {
-      winners.push(getWinningResult(winningBoard, numbers))
+      if (winningBoard) {
+        winners.push(winningBoard)
 
-      // Remove the winning board from array of potential boards
-      bingoBoards = bingoBoards.filter((board) => board !== winningBoard)
+        // We only care about the first winner here
+        if (winners.length === 1) {
+          partAResult = getWinningResult(winners[0], numbers)
+        }
+
+        if (bingoBoards.length > 1) {
+          // Remove the winning board from array of potential boards
+          bingoBoards = bingoBoards.filter((board) => board !== winningBoard)
+        } else {
+          partBResult = getWinningResult(winners[winners.length - 1], numbers)
+          return [partAResult, partBResult]
+        }
+      }
     }
   }
-
-  // Example input matches correctly, the puzzle input does not
-  return [winners[0], winners[winners.length - 1]]
 }
 
 const dayFourPartOne = playBingo(numbers, boards)[0]
