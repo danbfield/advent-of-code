@@ -76,23 +76,18 @@ const playBingo = (bingoNumbers, bingoBoards) => {
   const numbers = []
 
   for (let i = 0; i < bingoNumbers.length; i++) {
-    const calledNumber = bingoNumbers[i]
-
-    numbers.push(calledNumber)
+    numbers.push(bingoNumbers[i])
 
     for (let j = 0; j < bingoBoards.length; j++) {
       const board = bingoBoards[j]
 
       for (let x = 0; x < board.length; x++) {
-        const test = Array.from(Array(5).keys())
+        // We need this to get the columns, not the rows due to how we've
+        // built our data structure, because our bingo board grid is 5x5.
+        const nums = [0, 1, 2, 3, 4]
 
-        const rowsMatch = test.every((number) =>
-          numbers.includes(board[x][number])
-        )
-
-        const colsMatch = test.every((number) =>
-          numbers.includes(board[number][x])
-        )
+        const rowsMatch = nums.every((num) => numbers.includes(board[x][num]))
+        const colsMatch = nums.every((num) => numbers.includes(board[num][x]))
 
         if (rowsMatch || colsMatch) {
           return getWinningResult(board, numbers)
@@ -100,16 +95,6 @@ const playBingo = (bingoNumbers, bingoBoards) => {
       }
     }
   }
-
-  return 'something'
-}
-
-// The score of the winning board can now be calculated. Start by finding the sum
-// of all unmarked numbers on that board; in this case, the sum is 188. Then, multiply
-// that sum by the number that was just called when the board won, 24, to get the
-// final score, 188 * 24 = 4512.
-const calcuteFinalScore = () => {
-  return 'something'
 }
 
 const dayFourPartOne = playBingo(numbers, boards)
