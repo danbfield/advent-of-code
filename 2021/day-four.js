@@ -73,28 +73,31 @@ const getWinningResult = (board, calledNumbers) => {
 }
 
 const playBingo = (bingoNumbers, bingoBoards) => {
-  const calledNumbers = []
+  const numbers = []
 
   for (let i = 0; i < bingoNumbers.length; i++) {
     const calledNumber = bingoNumbers[i]
 
-    calledNumbers.push(calledNumber)
+    numbers.push(calledNumber)
 
     for (let j = 0; j < bingoBoards.length; j++) {
       const board = bingoBoards[j]
 
-      let hasWon = false
-
       for (let x = 0; x < board.length; x++) {
-        const row = board[x]
-        hasWon = row.every((number) => calledNumbers.includes(number))
+        const test = Array.from(Array(5).keys())
 
-        if (hasWon) {
-          return getWinningResult(board, calledNumbers)
+        const rowsMatch = test.every((number) =>
+          numbers.includes(board[x][number])
+        )
+
+        const colsMatch = test.every((number) =>
+          numbers.includes(board[number][x])
+        )
+
+        if (rowsMatch || colsMatch) {
+          return getWinningResult(board, numbers)
         }
       }
-
-      // getWinningResult for column not just row
     }
   }
 
