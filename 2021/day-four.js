@@ -32,7 +32,9 @@ const input = parseInputByCarriageReturn('2021/inputs/day-four.txt')
  * @returns object
  */
 const formatInput = (input) => {
-  const arrayOfDrawnNumbers = input[0].split([','])
+  const arrayOfDrawnNumbers = input[0]
+    .split([','])
+    .map((item) => parseInt(item))
 
   let currentBoard = []
   let boards = []
@@ -47,10 +49,12 @@ const formatInput = (input) => {
     }
 
     if (currentLine !== '') {
-      const formattedString = currentLine.replace(/ +/g, ' ')
-      // currentBoard.push(formattedString.split(' '))
-      // Should I split the string into an array of 5 values? Hmm...
-      currentBoard.push(formattedString.split(' '))
+      currentBoard.push(
+        currentLine
+          .replace(/ +/g, ' ')
+          .split(' ')
+          .map((item) => parseInt(item))
+      )
     }
   }
 
@@ -63,9 +67,9 @@ const getWinningResult = (board, calledNumbers) => {
   const flatBoard = board.flat()
   const lastNumber = parseInt(calledNumbers[calledNumbers.length - 1])
 
-  const excludedNumbers = flatBoard
-    .filter((boardNumbers) => !calledNumbers.includes(boardNumbers))
-    .map((item) => parseInt(item))
+  const excludedNumbers = flatBoard.filter(
+    (boardNumbers) => !calledNumbers.includes(boardNumbers)
+  )
 
   const summedExcludedNumbers = excludedNumbers.reduce((a, b) => a + b, 0)
 
