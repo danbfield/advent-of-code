@@ -61,8 +61,6 @@ const formatInput = (input) => {
   return [arrayOfDrawnNumbers, boards]
 }
 
-const [numbers, boards] = formatInput(input)
-
 /**
  * This function calculates the result of the winning board. Start
  * by finding the sum of all unmarked numbers on that board; in this
@@ -162,6 +160,8 @@ const playBingo = (bingoNumbers, bingoBoards) => {
     }
   }
 }
+
+const [numbers, boards] = formatInput(input)
 
 const [dayFourPartOne, dayFourPartTwo] = playBingo(numbers, boards)
 
