@@ -125,8 +125,6 @@ const playBingo = (bingoNumbers, bingoBoards) => {
   }
 }
 
-const dayFourPartOne = playBingo(numbers, boards)[0]
-
-const dayFourPartTwo = playBingo(numbers, boards)[1]
+const [dayFourPartOne, dayFourPartTwo] = playBingo(numbers, boards)
 
 export { dayFourPartOne, dayFourPartTwo }
