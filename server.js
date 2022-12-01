@@ -1,4 +1,5 @@
 import express from 'express'
+import { dayOne } from './2022/1.js'
 
 const app = express()
 const port = 8080
