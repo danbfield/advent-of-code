@@ -33,6 +33,12 @@ export const splitOnSeparator = (arr, separator = '') => {
   return array
 }
 
+/**
+ * Converts an array (and its nested arrays) from String to Int.
+ *
+ * Input: [ ['1', '2'], ['1'] ]
+ * Output: [ [ 1, 2 ], [ 1 ] ]
+ */
 export const deepConvertStringToInt = (arr) =>
   arr.map((v) =>
     Array.isArray(v) ? deepConvertStringToInt(v) : Number(v) || 0
