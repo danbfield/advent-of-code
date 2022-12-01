@@ -1,0 +1,10 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.tabSize": 2,
+  "workbench.startupEditor": "none",
+  "prettier.semi": false,
+  "prettier.singleQuote": true
+}
