@@ -13,6 +13,9 @@ const totalPerElf = splitArray
   .sort((a, b) => b - a)
 
 console.log(totalPerElf[0])
+console.log(
+  totalPerElf.slice(0, 3).reduce((partialSum, a) => partialSum + a, 0)
+)
 
 let total = 0
 const array = []
