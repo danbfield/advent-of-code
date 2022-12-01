@@ -13,6 +13,12 @@ export const parseInputByCarriageReturn = (file) =>
 export const parseInputAsNumbers = (file) =>
   parseInputAsStrings(file).map((item) => parseInt(item))
 
+/**
+ * Splits an array into smaller arrays by seperator.
+ *
+ * Input: [ 'Bob', 'Dylan', 'Jack', '', 'Chris', 'Chloe', 'Jess' ]
+ * Ouput: [ [ 'Bob', 'Dylan', 'Jack' ], [ 'Chris', 'Chloe', 'Jess' ] ]
+ */
 export const splitOnSeparator = (arr, separator = '') => {
   const array = [[]]
 
