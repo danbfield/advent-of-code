@@ -26,3 +26,8 @@ export const splitOnSeparator = (arr, separator = '') => {
 
   return array
 }
+
+export const deepConvertStringToInt = (arr) =>
+  arr.map((v) =>
+    Array.isArray(v) ? deepConvertStringToInt(v) : Number(v) || 0
+  )
