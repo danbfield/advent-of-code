@@ -1,6 +1,18 @@
-import { parseInputAsStrings } from '../inputs/helper.js'
+import {
+  parseInputAsStrings,
+  splitOnSeparator,
+  deepConvertStringToInt,
+} from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/1.txt')
+
+const splitArray = deepConvertStringToInt(splitOnSeparator(input))
+
+const totalPerElf = splitArray
+  .map((value) => value.reduce((partialSum, a) => partialSum + a, 0))
+  .sort((a, b) => b - a)
+
+console.log(totalPerElf[0])
 
 let total = 0
 const array = []
