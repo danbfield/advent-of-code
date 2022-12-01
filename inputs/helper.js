@@ -40,6 +40,6 @@ export const splitOnSeparator = (arr, separator = '') => {
  * Output: [ [ 1, 2 ], [ 1 ] ]
  */
 export const deepConvertStringToInt = (arr) =>
-  arr.map((v) =>
-    Array.isArray(v) ? deepConvertStringToInt(v) : Number(v) || 0
+  arr.map((value) =>
+    Array.isArray(value) ? deepConvertStringToInt(value) : Number(value) || 0
   )
