@@ -14,13 +14,5 @@ const score = {
   'C Z': [3 + 3, 6 + 1],
 }
 
-let p1 = 0
-let p2 = 0
-
-input.forEach((element) => {
-  p1 += score[element][0]
-  p2 += score[element][1]
-})
-
-export const d2p1 = p1
-export const d2p2 = p2
+export const d2p1 = input.reduce((a, c) => a + score[c][0], 0)
+export const d2p2 = input.reduce((a, c) => a + score[c][1], 0)
