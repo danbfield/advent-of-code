@@ -37,11 +37,11 @@ const pointsForBattle = (opponentMove, playerMove) => {
 
 let total = 0
 
-for (let i = 0; i < input.length; i++) {
-  const [opponentMove, playerMove] = input[i]
+input.forEach((element) => {
+  const [opponentMove, playerMove] = element
 
   total += pointsForBattle(scores[opponentMove], scores[playerMove])
   total += scores[playerMove]
-}
+})
 
 export const d2p1 = total
