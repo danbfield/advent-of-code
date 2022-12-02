@@ -42,9 +42,7 @@ const scoreEarnedThisRound = (opponentMove, playerMove) => {
 let total = 0
 
 for (let i = 0; i < input.length; i++) {
-  const [opponentMove, playerMove] = input[i]
-
-  total += scoreEarnedThisRound(scores[opponentMove], scores[playerMove])
+  total += scoreEarnedThisRound(scores[input[i][0]], scores[input[i][1]])
 }
 
 export const d2p1 = total
