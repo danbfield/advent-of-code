@@ -15,7 +15,6 @@ const scores = {
 
 const DRAW = 3
 const WIN = 6
-const LOSS = 0
 
 const scoreEarnedThisRound = (opponentMove, playerMove) => {
   let scoreThisRound = 0
@@ -25,16 +24,12 @@ const scoreEarnedThisRound = (opponentMove, playerMove) => {
       scoreThisRound += DRAW
       break
     case 1:
-      if (opponentMove > playerMove) {
-        scoreThisRound += LOSS
-      } else {
+      if (opponentMove < playerMove) {
         scoreThisRound += WIN
       }
       break
     default:
-      if (opponentMove < playerMove) {
-        scoreThisRound += LOSS
-      } else {
+      if (opponentMove > playerMove) {
         scoreThisRound += WIN
       }
   }
