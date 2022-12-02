@@ -15,34 +15,33 @@ const scores = {
 
 const DRAW = 3
 const WIN = 6
+const LOSS = 0
 
-const scoreEarnedThisRound = (opponentMove, playerMove) => {
-  let scoreThisRound = 0
-
+const pointsForBattle = (opponentMove, playerMove) => {
   switch (Math.abs(opponentMove - playerMove)) {
     case 0:
-      scoreThisRound += DRAW
-      break
+      return DRAW
     case 1:
       if (opponentMove < playerMove) {
-        scoreThisRound += WIN
+        return WIN
       }
       break
     default:
       if (opponentMove > playerMove) {
-        scoreThisRound += WIN
+        return WIN
       }
   }
 
-  scoreThisRound += playerMove
-
-  return scoreThisRound
+  return LOSS
 }
 
 let total = 0
 
 for (let i = 0; i < input.length; i++) {
-  total += scoreEarnedThisRound(scores[input[i][0]], scores[input[i][1]])
+  const [opponentMove, playerMove] = input[i]
+
+  total += pointsForBattle(scores[opponentMove], scores[playerMove])
+  total += scores[playerMove]
 }
 
 export const d2p1 = total
