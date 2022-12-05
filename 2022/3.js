@@ -20,9 +20,7 @@ const commonItems = (a, b) => {
   return duplicateCharacter
 }
 
-const items = []
-
-input.forEach((rucksack) => {
+const findItem = (rucksack) => {
   const compartmentOne = rucksack.substring(0, rucksack.length / 2)
   const compartmentTwo = rucksack.substring(
     rucksack.length / 2,
@@ -32,6 +30,13 @@ input.forEach((rucksack) => {
   const commonItem = commonItems(compartmentOne, compartmentTwo)
   const item = values.findIndex((item) => item === commonItem) + 1
 
+  return item
+}
+
+const items = []
+
+input.forEach((rucksack) => {
+  const item = findItem(rucksack)
   items.push(item)
 })
 
