@@ -7,17 +7,15 @@ const values = [...lowerCase, ...upperCase]
 const input = parseInputAsStrings('inputs/2022/3.txt')
 
 const commonItems = (a, b) => {
-  let duplicateCharacter = ''
+  const items = []
 
-  for (let i = 0; i < a.length; i++) {
-    if (duplicateCharacter.indexOf(a[i]) === -1) {
-      if (b.indexOf(a[i]) !== -1) {
-        duplicateCharacter += a[i]
-      }
+  a.split('').forEach((letter) => {
+    if (b.includes(letter)) {
+      items.push(letter)
     }
-  }
+  })
 
-  return duplicateCharacter
+  return items[0]
 }
 
 const findSharedCompartmentItem = (rucksack) => {
