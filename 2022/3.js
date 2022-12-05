@@ -33,9 +33,8 @@ const findSharedCompartmentItem = (rucksack) => {
 const items = []
 
 input.forEach((rucksack) => {
-  const item =
-    values.findIndex((item) => item === findSharedCompartmentItem(rucksack)) + 1
-
+  const uniqueItem = findSharedCompartmentItem(rucksack)
+  const item = values.findIndex((item) => item === uniqueItem) + 1
   items.push(item)
 })
 
@@ -55,9 +54,7 @@ const badges = []
 
 for (let i = 0; i < input.length; i += 3) {
   const uniqueItem = findSharedGroupItem([input[i], input[i + 1], input[i + 2]])
-
   const item = values.findIndex((item) => item === uniqueItem) + 1
-
   badges.push(item)
 }
 
