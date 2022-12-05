@@ -6,14 +6,16 @@ const values = [...lowerCase, ...upperCase]
 
 const input = parseInputAsStrings('inputs/2022/3.txt')
 
-const commonItems = (a, b) => {
+const commonItemsForGroup = (group) => {
   const items = []
 
-  a.split('').forEach((letter) => {
-    if (b.includes(letter)) {
-      items.push(letter)
-    }
-  })
+  for (let i = 1; i < group.length; i++) {
+    group[0].split('').forEach((letter) => {
+      if (group[i].includes(letter)) {
+        items.push(letter)
+      }
+    })
+  }
 
   return items[0]
 }
@@ -25,7 +27,7 @@ const findSharedCompartmentItem = (rucksack) => {
     rucksack.length
   )
 
-  return commonItems(compartmentOne, compartmentTwo)
+  return commonItemsForGroup([compartmentOne, compartmentTwo])
 }
 
 const items = []
