@@ -1,35 +1,23 @@
-import { parseInputAsStrings } from '../inputs/helper.js'
+import {
+  parseInputAsStrings,
+  deepConvertStringToInt,
+} from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/4.txt')
-
-const getAllNumbersBetween = (beginning, end) => {
-  const numbers = []
-
-  for (let i = beginning; i <= end; i++) {
-    numbers.push(i)
-  }
-
-  return numbers
-}
-
-const getSections = (assignment) => {
-  const [beginning, end] = assignment.split('-')
-
-  return getAllNumbersBetween(parseInt(beginning), parseInt(end))
-}
 
 let count = 0
 
 for (let i = 0; i < input.length; i++) {
   const [first, second] = input[i].split(',')
+  const [a, b] = first.split('-')
+  const [c, d] = second.split('-')
 
-  const firstSection = getSections(first)
-  const secondSection = getSections(second)
+  const [A, B, C, D] = deepConvertStringToInt([a, b, c, d])
 
-  console.log({ firstSection, secondSection })
+  if ((A >= C && B <= D) || (A <= C && B >= D)) {
+    count++
+  }
 }
 
-console.log(count)
-
-export const d4p1 = 'n/a'
+export const d4p1 = count
 export const d4p2 = 'n/a'
