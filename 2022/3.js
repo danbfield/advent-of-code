@@ -27,21 +27,18 @@ const findItem = (rucksack) => {
     rucksack.length
   )
 
-  const commonItem = commonItems(compartmentOne, compartmentTwo)
-  const item = values.findIndex((item) => item === commonItem) + 1
-
-  return item
+  return commonItems(compartmentOne, compartmentTwo)
 }
 
 const items = []
 
 input.forEach((rucksack) => {
-  const item = findItem(rucksack)
+  const item = values.findIndex((item) => item === findItem(rucksack)) + 1
+
   items.push(item)
 })
 
 for (let i = 0; i < input.length; i += 3) {
   const group = [input[i], input[i + 1], input[i + 2]]
-  console.log(group)
 }
 export const d3p1 = items.reduce((partialSum, a) => partialSum + a, 0)
