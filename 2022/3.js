@@ -39,21 +39,28 @@ input.forEach((rucksack) => {
   items.push(item)
 })
 
-const badges = []
+const findSharedGroupItem = (group) => {
+  const items = []
 
-for (let i = 0; i < input.length; i += 3) {
-  const commonGroupItem = []
-  const group = [input[i], input[i + 1], input[i + 2]]
   group[0].split('').forEach((letter) => {
     if (group[1].includes(letter) && group[2].includes(letter)) {
-      commonGroupItem.push(letter)
+      items.push(letter)
     }
   })
 
-  const uniqueItem = commonGroupItem.filter(
+  return items
+}
+
+const badges = []
+
+for (let i = 0; i < input.length; i += 3) {
+  const group = [input[i], input[i + 1], input[i + 2]]
+
+  const uniqueItem = findSharedGroupItem(group).filter(
     (value, index, array) => array.indexOf(value) === index
-  )
-  const item = values.findIndex((item) => item === uniqueItem[0]) + 1
+  )[0]
+
+  const item = values.findIndex((item) => item === uniqueItem) + 1
 
   badges.push(item)
 }
