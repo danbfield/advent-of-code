@@ -1,10 +1,10 @@
 import { parseInputAsStrings } from '../inputs/helper.js'
 
+const input = parseInputAsStrings('inputs/2022/3.txt')
+
 const lowerCase = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const upperCase = lowerCase.map((letter) => letter.toUpperCase())
 const values = [...lowerCase, ...upperCase]
-
-const input = parseInputAsStrings('inputs/2022/3.txt')
 
 const commonItemsForGroup = (group) => {
   const items = []
