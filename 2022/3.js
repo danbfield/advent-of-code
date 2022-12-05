@@ -20,20 +20,16 @@ const commonItemsForGroup = (group) => {
   return items[0]
 }
 
-const findSharedCompartmentItem = (rucksack) => {
+const items = []
+
+input.forEach((rucksack) => {
   const compartmentOne = rucksack.substring(0, rucksack.length / 2)
   const compartmentTwo = rucksack.substring(
     rucksack.length / 2,
     rucksack.length
   )
 
-  return commonItemsForGroup([compartmentOne, compartmentTwo])
-}
-
-const items = []
-
-input.forEach((rucksack) => {
-  const uniqueItem = findSharedCompartmentItem(rucksack)
+  const uniqueItem = commonItemsForGroup([compartmentOne, compartmentTwo])
   const item = values.findIndex((item) => item === uniqueItem) + 1
   items.push(item)
 })
