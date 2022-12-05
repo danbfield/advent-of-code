@@ -2,14 +2,6 @@ import { parseInputAsStrings } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/4.txt')
 
-String.prototype.replaceAt = function (index, replacement) {
-  return (
-    this.substring(0, index) +
-    replacement +
-    this.substring(index + replacement.length)
-  )
-}
-
 const getAllNumbersBetween = (beginning, end) => {
   const numbers = []
 
@@ -21,20 +13,9 @@ const getAllNumbersBetween = (beginning, end) => {
 }
 
 const getSections = (assignment) => {
-  let section = '........'
-
   const [beginning, end] = assignment.split('-')
 
-  const assignedSections = getAllNumbersBetween(
-    parseInt(beginning),
-    parseInt(end)
-  )
-
-  assignedSections.forEach((assignedSection) => {
-    section = section.replaceAt(assignedSection - 1, assignedSection.toString())
-  })
-
-  return section
+  return getAllNumbersBetween(parseInt(beginning), parseInt(end))
 }
 
 let count = 0
