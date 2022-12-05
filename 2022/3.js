@@ -54,11 +54,11 @@ const findSharedGroupItem = (group) => {
 const badges = []
 
 for (let i = 0; i < input.length; i += 3) {
-  const group = [input[i], input[i + 1], input[i + 2]]
-
-  const uniqueItem = findSharedGroupItem(group).filter(
-    (value, index, array) => array.indexOf(value) === index
-  )[0]
+  const uniqueItem = findSharedGroupItem([
+    input[i],
+    input[i + 1],
+    input[i + 2],
+  ]).filter((value, index, array) => array.indexOf(value) === index)[0]
 
   const item = values.findIndex((item) => item === uniqueItem) + 1
 
