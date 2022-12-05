@@ -38,7 +38,24 @@ input.forEach((rucksack) => {
   items.push(item)
 })
 
+const badges = []
+
 for (let i = 0; i < input.length; i += 3) {
+  const commonGroupItem = []
   const group = [input[i], input[i + 1], input[i + 2]]
+  group[0].split('').forEach((letter) => {
+    if (group[1].includes(letter) && group[2].includes(letter)) {
+      commonGroupItem.push(letter)
+    }
+  })
+
+  const uniqueItem = commonGroupItem.filter(
+    (value, index, array) => array.indexOf(value) === index
+  )
+  const item = values.findIndex((item) => item === uniqueItem[0]) + 1
+
+  badges.push(item)
 }
+
 export const d3p1 = items.reduce((partialSum, a) => partialSum + a, 0)
+export const d3p2 = badges.reduce((partialSum, a) => partialSum + a, 0)
