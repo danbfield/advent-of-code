@@ -8,11 +8,15 @@ const input = parseInputAsStrings('inputs/2022/4.txt')
 let count = 0
 
 for (let i = 0; i < input.length; i++) {
-  const [A, B, C, D] = deepConvertStringToInt(
-    input[i].split(',').map((value) => value.split('-'))
-  ).flat()
+  const [elfOneZoneOne, elfOneZoneTwo, elfTwoZoneOne, elfTwoZoneTwo] =
+    deepConvertStringToInt(
+      input[i].split(',').map((value) => value.split('-'))
+    ).flat()
 
-  if ((A >= C && B <= D) || (A <= C && B >= D)) {
+  if (
+    (elfOneZoneOne >= elfTwoZoneOne && elfOneZoneTwo <= elfTwoZoneTwo) ||
+    (elfOneZoneOne <= elfTwoZoneOne && elfOneZoneTwo >= elfTwoZoneTwo)
+  ) {
     count++
   }
 }
