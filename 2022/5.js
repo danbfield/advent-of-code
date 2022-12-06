@@ -21,7 +21,11 @@ const steps = instructionsStr
   .map((e) => e.match(/move (\d+) from (\d+) to (\d+)/).splice(1, 4))
   .map((e) => e.map(Number))
 
-console.log(steps)
+for (const step of steps) {
+  const [number, from, to] = step
+  const crates = stacks[from - 1].splice(-number).reverse()
+  stacks[to - 1].push(...crates)
+}
 
-export let d5p1 = 0
+export let d5p1 = stacks.map((stack) => stack.at(-1)).join('')
 export let d5p2 = 0
