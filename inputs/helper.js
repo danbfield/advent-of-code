@@ -1,5 +1,8 @@
 import fs from 'fs'
 
+export const simpleReadAsString = (file) =>
+  fs.readFileSync(file, 'utf8', (_, data) => data)
+
 export const parseInputAsStrings = (file) =>
   fs
     .readFileSync(file, 'utf-8')
