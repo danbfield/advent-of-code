@@ -8,11 +8,9 @@ const input = parseInputAsStrings('inputs/2022/4.txt')
 let count = 0
 
 for (let i = 0; i < input.length; i++) {
-  const [first, second] = input[i].split(',')
-  const [a, b] = first.split('-')
-  const [c, d] = second.split('-')
-
-  const [A, B, C, D] = deepConvertStringToInt([a, b, c, d])
+  const [A, B, C, D] = deepConvertStringToInt(
+    input[i].split(',').map((value) => value.split('-'))
+  ).flat()
 
   if ((A >= C && B <= D) || (A <= C && B >= D)) {
     count++
