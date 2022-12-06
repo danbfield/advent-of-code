@@ -5,21 +5,19 @@ import {
 
 const input = parseInputAsStrings('inputs/2022/4.txt')
 
-let count = 0
+export let d4p1 = 0
+export let d4p2 = 0
 
 for (let i = 0; i < input.length; i++) {
-  const [elfOneZoneOne, elfOneZoneTwo, elfTwoZoneOne, elfTwoZoneTwo] =
-    deepConvertStringToInt(
-      input[i].split(',').map((value) => value.split('-'))
-    ).flat()
+  const [min1, max1, min2, max2] = deepConvertStringToInt(
+    input[i].split(',').map((value) => value.split('-'))
+  ).flat()
 
-  if (
-    (elfOneZoneOne >= elfTwoZoneOne && elfOneZoneTwo <= elfTwoZoneTwo) ||
-    (elfOneZoneOne <= elfTwoZoneOne && elfOneZoneTwo >= elfTwoZoneTwo)
-  ) {
-    count++
+  if ((min1 >= min2 && max1 <= max2) || (min1 <= min2 && max1 >= max2)) {
+    d4p1++
+  }
+
+  if ((min1 <= min2 && max1 >= min2) || (min2 <= min1 && max2 >= min1)) {
+    d4p2++
   }
 }
-
-export const d4p1 = count
-export const d4p2 = 'n/a'
