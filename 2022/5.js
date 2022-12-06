@@ -2,8 +2,6 @@ import { simpleReadAsString } from '../inputs/helper.js'
 
 const input = simpleReadAsString('inputs/2022/5.txt')
 
-console.log(input)
-
 const [cratesStr, instructionsStr] = input.split('\n\n')
 
 const flipRowToStack = (arr) =>
@@ -18,7 +16,12 @@ const rowsArr = rowsStr.map((row) =>
 
 const stacks = flipRowToStack(rowsArr)
 
-console.log(stacks)
+const steps = instructionsStr
+  .split('\n')
+  .map((e) => e.match(/move (\d+) from (\d+) to (\d+)/).splice(1, 4))
+  .map((e) => e.map(Number))
+
+console.log(steps)
 
 export let d5p1 = 0
 export let d5p2 = 0
