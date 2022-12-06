@@ -7,7 +7,9 @@ console.log(input)
 const [cratesStr, instructionsStr] = input.split('\n\n')
 
 const flipRowToStack = (arr) =>
-  arr[0].map((_, i) => arr.map((row) => row[i]).reverse())
+  arr[0]
+    .map((_, i) => arr.map((row) => row[i]).reverse())
+    .map((e) => e.filter((e) => e !== '    '))
 
 const rowsStr = cratesStr.split('\n').slice(0, -1)
 const rowsArr = rowsStr.map((row) =>
