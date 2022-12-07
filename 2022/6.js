@@ -2,41 +2,51 @@ import { parseInputAsStrings } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/6.txt')
 
-const markers1 = []
-const markers2 = []
-
-const minimumSize1 = 4
-const minimumSize2 = 14
+const subroutine = {
+  1: { markers: [], size: 4 },
+  2: { markers: [], size: 14 },
+}
 
 for (const string of input) {
+  const { size, markers } = subroutine[1]
+
   for (let i = 0; i < string.length; i++) {
     const set = new Set()
 
-    for (let j = 0; j < minimumSize1; j++) {
+    for (let j = 0; j < size; j++) {
       set.add(string[i + j])
     }
 
-    if (set.size === minimumSize1) {
-      markers1.push(i + minimumSize1)
+    if (set.size === size) {
+      markers.push(i + size)
       break
     }
   }
 }
 
 for (const string of input) {
+  const { size, markers } = subroutine[2]
+
   for (let i = 0; i < string.length; i++) {
     const set = new Set()
 
-    for (let j = 0; j < minimumSize2; j++) {
+    for (let j = 0; j < size; j++) {
       set.add(string[i + j])
     }
 
-    if (set.size === minimumSize2) {
-      markers2.push(i + minimumSize2)
+    if (set.size === size) {
+      markers.push(i + size)
       break
     }
   }
 }
 
-export const d6p1 = markers1.reduce((partialSum, a) => partialSum + a, 0)
-export const d6p2 = markers2.reduce((partialSum, a) => partialSum + a, 0)
+export const d6p1 = subroutine[1].markers.reduce(
+  (partialSum, a) => partialSum + a,
+  0
+)
+
+export const d6p2 = subroutine[2].markers.reduce(
+  (partialSum, a) => partialSum + a,
+  0
+)
