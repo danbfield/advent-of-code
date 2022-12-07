@@ -5,6 +5,9 @@ const input = parseInputAsStrings('inputs/2022/6.txt')
 const markers1 = []
 const markers2 = []
 
+const minimumSize1 = 4
+const minimumSize2 = 14
+
 for (const string of input) {
   const split = string.split('')
   let set = new Set()
@@ -12,13 +15,12 @@ for (const string of input) {
   for (let i = 0; i < split.length; i++) {
     set = new Set()
 
-    set.add(split[i])
-    set.add(split[i + 1])
-    set.add(split[i + 2])
-    set.add(split[i + 3])
+    for (let j = 0; j < minimumSize1; j++) {
+      set.add(split[i + j])
+    }
 
-    if (set.size === 4) {
-      markers1.push(i + 4)
+    if (set.size === minimumSize1) {
+      markers1.push(i + minimumSize1)
       break
     }
   }
@@ -31,23 +33,12 @@ for (const string of input) {
   for (let i = 0; i < split.length; i++) {
     set = new Set()
 
-    set.add(split[i])
-    set.add(split[i + 1])
-    set.add(split[i + 2])
-    set.add(split[i + 3])
-    set.add(split[i + 4])
-    set.add(split[i + 5])
-    set.add(split[i + 6])
-    set.add(split[i + 7])
-    set.add(split[i + 8])
-    set.add(split[i + 9])
-    set.add(split[i + 10])
-    set.add(split[i + 11])
-    set.add(split[i + 12])
-    set.add(split[i + 13])
+    for (let j = 0; j < minimumSize2; j++) {
+      set.add(split[i + j])
+    }
 
-    if (set.size === 14) {
-      markers2.push(i + 14)
+    if (set.size === minimumSize2) {
+      markers2.push(i + minimumSize2)
       break
     }
   }
