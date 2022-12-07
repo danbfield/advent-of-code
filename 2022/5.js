@@ -14,7 +14,8 @@ const rowsArr = rowsStr.map((row) =>
   [...row.matchAll(/[A-Z]|    ?/g)].map((match) => match[0])
 )
 
-const stacks = flipRowToStack(rowsArr)
+export let d5p1 = flipRowToStack(rowsArr)
+export let d5p2 = flipRowToStack(rowsArr)
 
 const steps = instructionsStr
   .split('\n')
@@ -23,9 +24,15 @@ const steps = instructionsStr
 
 for (const step of steps) {
   const [number, from, to] = step
-  const crates = stacks[from - 1].splice(-number).reverse()
-  stacks[to - 1].push(...crates)
+  const crates = d5p1[from - 1].splice(-number).reverse()
+  d5p1[to - 1].push(...crates)
 }
 
-export let d5p1 = stacks.map((stack) => stack.at(-1)).join('')
-export let d5p2 = 0
+for (const step of steps) {
+  const [number, from, to] = step
+  const crates = d5p2[from - 1].splice(-number)
+  d5p2[to - 1].push(...crates)
+}
+
+d5p1 = d5p1.map((stack) => stack.at(-1)).join('')
+d5p2 = d5p2.map((stack) => stack.at(-1)).join('')
