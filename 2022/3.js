@@ -1,4 +1,4 @@
-import { parseInputAsStrings } from '../inputs/helper.js'
+import { parseInputAsStrings, sum } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/3.txt')
 
@@ -54,5 +54,5 @@ for (let i = 0; i < input.length; i += 3) {
   badges.push(item)
 }
 
-export const d3p1 = items.reduce((partialSum, a) => partialSum + a, 0)
-export const d3p2 = badges.reduce((partialSum, a) => partialSum + a, 0)
+export const d3p1 = items.reduce(sum, 0)
+export const d3p2 = badges.reduce(sum, 0)

@@ -46,3 +46,5 @@ export const deepConvertStringToInt = (arr) =>
   arr.map((value) =>
     Array.isArray(value) ? deepConvertStringToInt(value) : Number(value) || 0
   )
+
+export const sum = (partialSum, a) => partialSum + a

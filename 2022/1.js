@@ -2,13 +2,12 @@ import {
   parseInputAsStrings,
   splitOnSeparator,
   deepConvertStringToInt,
+  sum,
 } from '../inputs/helper.js'
 
 const input = deepConvertStringToInt(
   splitOnSeparator(parseInputAsStrings('inputs/2022/1.txt'))
 )
-
-const sum = (partialSum, a) => partialSum + a
 
 const output = input.map((value) => value.reduce(sum, 0)).sort((a, b) => b - a)
 

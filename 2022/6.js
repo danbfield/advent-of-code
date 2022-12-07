@@ -1,4 +1,4 @@
-import { parseInputAsStrings } from '../inputs/helper.js'
+import { parseInputAsStrings, sum } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/6.txt')
 
@@ -41,12 +41,6 @@ for (const string of input) {
   }
 }
 
-export const d6p1 = subroutine[1].markers.reduce(
-  (partialSum, a) => partialSum + a,
-  0
-)
+export const d6p1 = subroutine[1].markers.reduce(sum, 0)
 
-export const d6p2 = subroutine[2].markers.reduce(
-  (partialSum, a) => partialSum + a,
-  0
-)
+export const d6p2 = subroutine[2].markers.reduce(sum, 0)
