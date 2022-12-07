@@ -9,14 +9,11 @@ const minimumSize1 = 4
 const minimumSize2 = 14
 
 for (const string of input) {
-  const split = string.split('')
-  let set = new Set()
-
-  for (let i = 0; i < split.length; i++) {
-    set = new Set()
+  for (let i = 0; i < string.length; i++) {
+    const set = new Set()
 
     for (let j = 0; j < minimumSize1; j++) {
-      set.add(split[i + j])
+      set.add(string[i + j])
     }
 
     if (set.size === minimumSize1) {
@@ -27,14 +24,11 @@ for (const string of input) {
 }
 
 for (const string of input) {
-  let set = new Set()
-  const split = string.split('')
-
-  for (let i = 0; i < split.length; i++) {
-    set = new Set()
+  for (let i = 0; i < string.length; i++) {
+    const set = new Set()
 
     for (let j = 0; j < minimumSize2; j++) {
-      set.add(split[i + j])
+      set.add(string[i + j])
     }
 
     if (set.size === minimumSize2) {
