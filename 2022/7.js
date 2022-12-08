@@ -20,11 +20,12 @@ const input = parseInputAsStrings('inputs/2022/7.txt')
 console.log(input)
 
 for (let i = 0; i < input.length; i++) {
-  const command = input[i].split(' ')
   console.log(command)
 
-  const reg = new RegExp('^[0-9]+$')
-  if (reg.test(command[0])) {
+  const command = input[i].split(' ')
+  const isNumber = new RegExp('^[0-9]+$')
+
+  if (isNumber.test(command[0])) {
     console.log('file')
   }
 
