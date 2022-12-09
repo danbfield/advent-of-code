@@ -6,6 +6,7 @@ import { d4p1, d4p2 } from './2022/4.js'
 import { d5p1, d5p2 } from './2022/5.js'
 import { d6p1, d6p2 } from './2022/6.js'
 import { d7p1, d7p2 } from './2022/7.js'
+import { d8p1, d8p2 } from './2022/8.js'
 
 const app = express()
 const port = 8080
@@ -19,6 +20,7 @@ app.listen(port, () => {
   console.log({ 'day5.0': d5p1, 'day5.5': d5p2 })
   console.log({ 'day6.0': d6p1, 'day6.5': d6p2 })
   console.log({ 'day7.0': d7p1, 'day7.5': d7p2 })
+  console.log({ 'day8.0': d8p1, 'day8.5': d8p2 })
 })
 
 app.get('/', (req, res) => {
