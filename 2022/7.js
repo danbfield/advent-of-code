@@ -1,4 +1,4 @@
-import { parseInputAsStrings } from '../inputs/helper.js'
+import { parseInputAsStrings, sum } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/7.txt')
 
@@ -25,5 +25,8 @@ for (const command of input) {
 
 console.log(directory)
 
-export const d7p1 = 0
+export const d7p1 = Object.values(directory)
+  .filter((value) => value < 100000)
+  .reduce(sum, 0)
+
 export const d7p2 = 0
