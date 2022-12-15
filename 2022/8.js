@@ -7,27 +7,17 @@ const input = parseInputAsStrings('inputs/2022/8.txt')
 
 console.log(input)
 
-const isVisibleUp = (
-  currentHeight,
-  currentLineIndex,
-  currentColumnIndex,
-  lines
-) => {
-  for (let i = 0; i < currentLineIndex; ++i) {
-    if (parseInt(lines[i][currentColumnIndex]) >= currentHeight) {
+const isVisibleUp = (height, rowIndex, colIndex, cols) => {
+  for (let i = 0; i < rowIndex; ++i) {
+    if (parseInt(cols[i][colIndex]) >= height) {
       return true
     }
   }
 }
 
-const isVisibleBelow = (
-  currentHeight,
-  currentLineIndex,
-  currentColumnIndex,
-  lines
-) => {
-  for (let i = lines.length - 1; i > currentLineIndex; --i) {
-    if (parseInt(lines[i][currentColumnIndex]) >= currentHeight) {
+const isVisibleBelow = (height, rowIndex, colIndex, cols) => {
+  for (let i = cols.length - 1; i > rowIndex; --i) {
+    if (parseInt(cols[i][colIndex]) >= height) {
       return true
     }
   }
