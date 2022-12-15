@@ -49,7 +49,6 @@ const trees = []
 input.forEach((row, rowIndex, rows) => {
   // 3, 0, 3, 7, 3
   // 2, 5, 5, 1, 2 etc.
-  console.log({ row })
   row.split('').forEach((col, colIndex, cols) => {
     const isEdge =
       !rowIndex ||
