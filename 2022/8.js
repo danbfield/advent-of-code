@@ -20,6 +20,19 @@ const isVisibleUp = (
   }
 }
 
+const isVisibleBelow = (
+  currentHeight,
+  currentLineIndex,
+  currentColumnIndex,
+  lines
+) => {
+  for (let i = lines.length - 1; i > currentLineIndex; --i) {
+    if (parseInt(lines[i][currentColumnIndex]) >= currentHeight) {
+      return true
+    }
+  }
+}
+
 // 30373
 // 25512 etc.
 input.forEach((row, rowIndex, rows) => {
@@ -36,6 +49,7 @@ input.forEach((row, rowIndex, rows) => {
     const height = Number(col)
 
     const up = isVisibleUp(height, rowIndex, colIndex, rows)
+    const below = isVisibleBelow(height, rowIndex, colIndex, rows)
   })
 })
 
