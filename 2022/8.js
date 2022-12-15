@@ -7,7 +7,7 @@ const input = parseInputAsStrings('inputs/2022/8.txt')
 
 console.log(input)
 
-const isVisibleUp = (height, rowIndex, colIndex, cols) => {
+const isVisibleFromAbove = (height, rowIndex, colIndex, cols) => {
   for (let i = 0; i < rowIndex; ++i) {
     if (parseInt(cols[i][colIndex]) >= height) {
       return true
@@ -15,7 +15,7 @@ const isVisibleUp = (height, rowIndex, colIndex, cols) => {
   }
 }
 
-const isVisibleBelow = (height, rowIndex, colIndex, cols) => {
+const isVisibleFromBelow = (height, rowIndex, colIndex, cols) => {
   for (let i = cols.length - 1; i > rowIndex; --i) {
     if (parseInt(cols[i][colIndex]) >= height) {
       return true
@@ -38,8 +38,8 @@ input.forEach((row, rowIndex, rows) => {
 
     const height = Number(col)
 
-    const up = isVisibleUp(height, rowIndex, colIndex, rows)
-    const below = isVisibleBelow(height, rowIndex, colIndex, rows)
+    const up = isVisibleFromAbove(height, rowIndex, colIndex, rows)
+    const below = isVisibleFromBelow(height, rowIndex, colIndex, rows)
   })
 })
 
