@@ -5,47 +5,47 @@ import {
 
 const input = parseInputAsStrings('inputs/2022/8.txt')
 
-console.log(input)
-
-const isVisibleFromAbove = (height, rowIndex, colIndex, cols) => {
+const isVisibleFromAbove = (height, rowIndex, colIndex, rows) => {
   for (let i = 0; i < rowIndex; ++i) {
-    if (parseInt(cols[i][colIndex]) >= height) {
-      return true
+    if (Number(rows[i][colIndex]) >= height) {
+      return false
     }
   }
 
-  return false
+  return true
 }
 
-const isVisibleFromBelow = (height, rowIndex, colIndex, cols) => {
+const isVisibleFromBelow = (height, rowIndex, colIndex, rows, cols) => {
   for (let i = cols.length - 1; i > rowIndex; --i) {
-    if (parseInt(cols[i][colIndex]) >= height) {
-      return true
+    if (Number(rows[i][colIndex]) >= height) {
+      return false
     }
   }
 
-  return false
+  return true
 }
 
 const isVisibleFromTheLeft = (height, rowIndex, colIndex, rows) => {
   for (let i = 0; i < colIndex; ++i) {
-    if (parseInt(rows[rowIndex][i]) >= height) {
-      return true
+    if (Number(rows[rowIndex][i]) >= height) {
+      return false
     }
   }
 
-  return false
+  return true
 }
 
 const isVisibleFromTheRight = (height, rowIndex, colIndex, rows, cols) => {
   for (let i = cols.length - 1; i > colIndex; --i) {
-    if (parseInt(rows[rowIndex][i]) >= height) {
-      return true
+    if (Number(rows[rowIndex][i]) >= height) {
+      return false
     }
   }
 
-  return false
+  return true
 }
+
+let visible = 0
 
 // 30373
 // 25512 etc.
@@ -62,16 +62,16 @@ input.forEach((row, rowIndex, rows) => {
 
     const height = Number(col)
 
-    const up = isVisibleFromAbove(height, rowIndex, colIndex, cols)
-    const below = isVisibleFromBelow(height, rowIndex, colIndex, cols)
+    const up = isVisibleFromAbove(height, rowIndex, colIndex, rows)
+    const below = isVisibleFromBelow(height, rowIndex, colIndex, rows, cols)
     const left = isVisibleFromTheLeft(height, rowIndex, colIndex, rows)
     const right = isVisibleFromTheRight(height, rowIndex, colIndex, rows, cols)
 
-    if (!isEdge) {
-      console.log({ up, below, left, right })
+    if (isEdge || up || below || left || right) {
+      visible++
     }
   })
 })
 
-export const d8p1 = 0
+export const d8p1 = visible
 export const d8p2 = 0
