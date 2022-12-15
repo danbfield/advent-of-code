@@ -42,6 +42,47 @@ const isVisibleFromTheRight = (height, rowIndex, colIndex, rows, cols) => {
   return true
 }
 
+function getTreeScore(height, rowIndex, colIndex, rows, cols) {
+  let top = 0
+  let left = 0
+  let right = 0
+  let bottom = 0
+
+  for (let i = rowIndex - 1; i > -1; --i) {
+    ++top
+
+    if (Number(rows[i][colIndex]) >= height) {
+      break
+    }
+  }
+
+  for (let i = colIndex - 1; i > -1; --i) {
+    ++left
+
+    if (Number(rows[rowIndex][i]) >= height) {
+      break
+    }
+  }
+
+  for (let i = colIndex + 1; i < cols.length; ++i) {
+    ++right
+
+    if (Number(rows[rowIndex][i]) >= height) {
+      break
+    }
+  }
+
+  for (let i = rowIndex + 1; i < rows.length; ++i) {
+    ++bottom
+
+    if (Number(rows[i][colIndex]) >= height) {
+      break
+    }
+  }
+
+  return top * left * right * bottom
+}
+
 const trees = []
 
 // 30373
@@ -69,9 +110,14 @@ input.forEach((row, rowIndex, rows) => {
       count: 0,
     }
 
+    if (!isEdge) {
+      // calculate count;
+      tree.count = getTreeScore(height, rowIndex, colIndex, rows, cols)
+    }
+
     trees.push(tree)
   })
 })
 
 export const d8p1 = trees.filter((tree) => tree.visible).length
-export const d8p2 = 0
+export const d8p2 = Math.max(...trees.map((tree) => tree.count))
