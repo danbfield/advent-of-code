@@ -42,7 +42,7 @@ const isVisibleFromTheRight = (height, rowIndex, colIndex, rows, cols) => {
   return true
 }
 
-let visible = 0
+const trees = []
 
 // 30373
 // 25512 etc.
@@ -64,11 +64,11 @@ input.forEach((row, rowIndex, rows) => {
     const left = isVisibleFromTheLeft(height, rowIndex, colIndex, rows)
     const right = isVisibleFromTheRight(height, rowIndex, colIndex, rows, cols)
 
-    if (isEdge || up || below || left || right) {
-      visible++
-    }
+    const tree = { height, visible: isEdge || up || below || left || right }
+
+    trees.push(tree)
   })
 })
 
-export const d8p1 = visible
+export const d8p1 = trees.filter((tree) => tree.visible).length
 export const d8p2 = 0
