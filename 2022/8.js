@@ -63,7 +63,11 @@ input.forEach((row, rowIndex, rows) => {
     const left = isVisibleFromTheLeft(height, rowIndex, colIndex, rows)
     const right = isVisibleFromTheRight(height, rowIndex, colIndex, rows, cols)
 
-    const tree = { height, visible: isEdge || up || below || left || right }
+    const tree = {
+      height,
+      visible: isEdge || up || below || left || right,
+      count: 0,
+    }
 
     trees.push(tree)
   })
