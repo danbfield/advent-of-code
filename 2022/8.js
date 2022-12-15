@@ -1,7 +1,4 @@
-import {
-  parseInputAsStrings,
-  deepConvertStringToInt,
-} from '../inputs/helper.js'
+import { parseInputAsStrings } from '../inputs/helper.js'
 
 const input = parseInputAsStrings('inputs/2022/8.txt')
 
