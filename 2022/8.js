@@ -13,6 +13,8 @@ const isVisibleFromAbove = (height, rowIndex, colIndex, cols) => {
       return true
     }
   }
+
+  return false
 }
 
 const isVisibleFromBelow = (height, rowIndex, colIndex, cols) => {
@@ -21,6 +23,8 @@ const isVisibleFromBelow = (height, rowIndex, colIndex, cols) => {
       return true
     }
   }
+
+  return false
 }
 
 const isVisibleFromTheLeft = (height, rowIndex, colIndex, rows) => {
@@ -29,6 +33,18 @@ const isVisibleFromTheLeft = (height, rowIndex, colIndex, rows) => {
       return true
     }
   }
+
+  return false
+}
+
+const isVisibleFromTheRight = (height, rowIndex, colIndex, rows, cols) => {
+  for (let i = cols.length - 1; i > colIndex; --i) {
+    if (parseInt(rows[rowIndex][i]) >= height) {
+      return true
+    }
+  }
+
+  return false
 }
 
 // 30373
@@ -49,6 +65,11 @@ input.forEach((row, rowIndex, rows) => {
     const up = isVisibleFromAbove(height, rowIndex, colIndex, cols)
     const below = isVisibleFromBelow(height, rowIndex, colIndex, cols)
     const left = isVisibleFromTheLeft(height, rowIndex, colIndex, rows)
+    const right = isVisibleFromTheRight(height, rowIndex, colIndex, rows, cols)
+
+    if (!isEdge) {
+      console.log({ up, below, left, right })
+    }
   })
 })
 
