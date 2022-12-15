@@ -23,6 +23,14 @@ const isVisibleFromBelow = (height, rowIndex, colIndex, cols) => {
   }
 }
 
+const isVisibleFromTheLeft = (height, rowIndex, colIndex, rows) => {
+  for (let i = 0; i < colIndex; ++i) {
+    if (parseInt(rows[rowIndex][i]) >= height) {
+      return true
+    }
+  }
+}
+
 // 30373
 // 25512 etc.
 input.forEach((row, rowIndex, rows) => {
@@ -38,8 +46,9 @@ input.forEach((row, rowIndex, rows) => {
 
     const height = Number(col)
 
-    const up = isVisibleFromAbove(height, rowIndex, colIndex, rows)
-    const below = isVisibleFromBelow(height, rowIndex, colIndex, rows)
+    const up = isVisibleFromAbove(height, rowIndex, colIndex, cols)
+    const below = isVisibleFromBelow(height, rowIndex, colIndex, cols)
+    const left = isVisibleFromTheLeft(height, rowIndex, colIndex, rows)
   })
 })
 
