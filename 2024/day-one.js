@@ -27,9 +27,9 @@ for (let i = 0; i < leftList.length; i++) {
 }
 
 // Sum the differences: https://adventofcode.com/2024/day/1
-const answer1 = differenceList.reduce(sum, 0)
+const d1p1 = differenceList.reduce(sum, 0)
 
 // Sum the instances: https://adventofcode.com/2024/day/1#part2
-const answer2 = similarityList.reduce(sum, 0)
+const d1p2 = similarityList.reduce(sum, 0)
 
-export { answer1, answer2 }
+export { d1p1, d1p2 }
