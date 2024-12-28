@@ -3,6 +3,7 @@ import { parseInputAsStrings, sum } from '../inputs/helper.js'
 const leftList = []
 const rightList = []
 const differenceList = []
+const similarityList = []
 
 const input = parseInputAsStrings('inputs/2024/1.txt')
 
@@ -20,9 +21,15 @@ rightList.sort()
 // Figure out the difference between left and right lists
 for (let i = 0; i < leftList.length; i++) {
   differenceList.push(Math.abs(leftList[i] - rightList[i]))
+  similarityList.push(
+    leftList[i] * rightList.filter((item) => item === leftList[i]).length
+  )
 }
 
-// Sum the differences
+// Sum the differences: https://adventofcode.com/2024/day/1
 const answer1 = differenceList.reduce(sum, 0)
 
-export { answer1 }
+// Sum the instances: https://adventofcode.com/2024/day/1#part2
+const answer2 = similarityList.reduce(sum, 0)
+
+export { answer1, answer2 }
